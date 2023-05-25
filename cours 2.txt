@@ -1,0 +1,69 @@
+Access Lexicons
+There are several lexicons contained in the NLTK library.
+ Some commonly used lexicons are listed and described below.
+The Stopwords Corpus: Words like "me", "has", "also", and “to”
+ are all examples of stop words. Stop words add little meaning
+ to text data. This lexicon corpus contains stop words in English.
+The Names Corpus: Categorized by gender, this lexicon corpus contains
+ over 8,000 first names. Female names are stored in the file called female.txt 
+and male names are stored in the file called male.txt.
+The CMU Pronouncing Dictionary Corpus: Based on US English, this lexicon corpus 
+contains the phonetic pronunciations of words. Each phonetic pronunciation is 
+represented with a symbol based on the Arpabet.
+*******************************************************
+Use stopwords
+For this first exercise, we will work with the lexicon corpus called stopwords. Using the corpus reader function words, we can return a list of strings representing English stop words.
+Enter the code below, then select the TRY IT button to run the file.
+print(f"\nStop Words in English: {stopwords.words('english')}")
+
+***********************************************************
+Use names
+For this second exercise, we will work with the lexicon corpus called names. Using the corpus reader function words, we can create a variable called male_names to represent all male names contained in this corpus. Then, we can analyze this data, such as by returning all male names that start with a "Za".
+Enter the code below, then select the TRY IT button to run the file.
+male_names = names.words('male.txt')
+
+male_names_startingwith_Za = [element for element in male_names if element.startswith('Za')]
+print(f"\nMale Names Starting with 'Za' in the Names Lexicon Corpus : {male_names_startingwith_Za}")
+
+***********************************************************************
+import nltk
+inaugural_corpus_words = nltk.corpus.inaugural.words()
+
+def stopwords_percentage(data):
+  english_stopwords = stopwords.words('english')
+  content = [element for element in data if element.lower() in english_stopwords]
+  return(100 * (len(content) / len(data)))
+
+print(f'\nPercentage of Stop Words in the Inaugural Corpus: {stopwords_percentage(inaugural_corpus_words)}%')
+***********************************************************************
+Try this variation:
+Write the code to produce the following expected output, then select the TRY IT button to run the file and check your work.
+The expected output is shown below.
+Percentage of Female Names Ending with 'a' in the Names Lexicon Corpus: 35.45290941811638%
+TRY IT
+Solution
+One possible solution is shown below. Store all of the female names in a variable. Use the endswith() method to find all of the female names that end with a. Calculate the percentage of female names ending with a as compared to the entire list of female names. Print the result.
+female_names = names.words('female.txt')
+
+female_names_endingwith_a = [element for element in female_names if element.endswith('a')]
+female_percentage = 100 * len(female_names_endingwith_a) / len(female_names)
+print(f"\nPercentage of Female Names Ending with 'a' in the Names Lexicon Corpus: {female_percentage}%")
+
+***********************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

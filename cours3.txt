@@ -1,0 +1,122 @@
+Use Wordnet
+Definition: Wordnet
+Wordnet is an English dictionary used to define single words and phrases.
+In the NLTK library, Wordnet represents a lexical corpus.
+This corpus possesses 155,287 words, along with short definitions and usage examples of each, and 117,659 corresponding groups of words called synonym sets (synsets) that relate to each word.
+Synsets & Lemmas
+Using the nltk.corpus package, we can import wordnet from the NLTK library.
+from nltk.corpus import wordnet
+The imported wordnet lexicon corpus will allow us to find the synonym set(s) of a specified word. Enter the code below, then select the TRY IT button to run the file.
+hello_synset = wordnet.synsets('hello')
+print(f"\nThe Synonym Set for the word 'hello' is: {hello_synset}")
+TRY IT
+
+The Synonym Set for the word 'hello' is: [Synset('hello.n.01')]
+Your output should display as shown below:
+The Synonym Set for the word 'hello' is: [Synset('hello.n.01')]
+Did you notice?
+
+We can also retrieve the lemmas (lemmas are the names of groups of words, which may have varying forms (e.g.: walk and walked), that all refer to the same particular meaning) of synonym sets.
+Enter the code below, then select the TRY IT button to run the file.
+hello_lemma_names = wordnet.synset('hello.n.01').lemma_names()
+print(f"\nThe Lemma Names in the Synonym Set 'hello.n.01' are: {hello_lemma_names}")
+TRY IT
+Your output should display as shown below:
+The Lemma Names in the Synonym Set 'hello.n.01' are: ['hello', 'hullo', 'hi', 'howdy', 'how-do-you-do']
+We can find the lemmas of a specified word, such as 'hello', and we can also find the lemmas of a specified synonym set, such as 'hello.n.01'.
+Enter the code below, then select the TRY IT button to run the file.
+hello_lemmas =  wordnet.lemmas('hello') 
+print(f"\nThe Lemmas in the Word 'hello' are: {hello_lemmas}")
+
+hello_n_01_synset_lemmas = wordnet.synset('hello.n.01').lemmas()
+print(f"\nThe Lemmas in the Synonym Set 'hello.n.01' are: {hello_n_01_synset_lemmas}")
+TRY IT
+Your output should display as shown below:
+The Lemmas in the Word 'hello' are: [Lemma('hello.n.01.hello')]
+The Lemmas in the Synonym Set 'hello.n.01' are: [Lemma('hello.n.01.hello'), Lemma('hello.n.01.hullo'), Lemma('hello.n.01.hi'), Lemma('hello.n.01.howdy'), Lemma('hello.n.01.how-do-you-do')]
+We can even go in the reverse direction, and retrieve the synset and synset name of a specified lemma, such as 'hello.n.01.hello'.
+Enter the code below, then select the TRY IT button to run the file.
+hello_n_01_hello_lemma_synset = wordnet.lemma('hello.n.01.hello').synset()
+print(f"\nThe Synset for the Lemma 'hello.n.01.hello' is: {hello_n_01_hello_lemma_synset}")
+
+hello_n_01_hello_lemma_synset_name = wordnet.lemma('hello.n.01.hello').name()
+print(f"\nThe Word / Synset Name for the Lemma 'hello.n.01.hello' is: {hello_n_01_hello_lemma_synset_name}")
+TRY IT
+Your output should display as shown below:
+The Synset for the Lemma 'hello.n.01.hello' is: Synset('hello.n.01')
+The Word / Synset Name for the Lemma 'hello.n.01.hello' is: hello
+Try this variation:
+As we said before, not every word has only one corresponding synonym set. Often, words have many synonym sets, as we see with the word 'canine'. The function defined below will print all lemma names in each synonym set for the word 'canine'.
+Enter the below code, then select the TRY IT button to run the file.
+canine_synset = wordnet.synsets('canine')
+print(f"\nThe Synonym Sets for the word 'canine' are: {canine_synset}")
+
+for element in canine_synset:
+  element_synset = str(element)[8:-2]
+  print(f"\nThe Lemmas in the Synonym Set '{element_synset}' are: {element.lemma_names()}")
+TRY IT
+Your output should display as shown below.
+The Synonym Sets for the word 'canine' are: [Synset('canine.n.01'), Synset('canine.n.02'), Synset('canine.a.01'), Synset('canine.a.02')]
+The Lemmas in the Synonym Set 'canine.n.01' are: ['canine', 'canine_tooth', 'eyetooth', 'eye_tooth', 'dogtooth', 'cuspid']
+The Lemmas in the Synonym Set 'canine.n.02' are: ['canine', 'canid']
+The Lemmas in the Synonym Set 'canine.a.01' are: ['canine', 'laniary']
+The Lemmas in the Synonym Set 'canine.a.02' are: ['canine']
+More Uses of Wordnet
+We can also retrieve the definitions of specified synonym sets, as well as their example usages.
+Enter the code below, then select the TRY IT button to run the file.
+hello_def = wordnet.synset('hello.n.01').definition()
+print(f"\nThe Definition for the Synonym Set 'hello.n.01' from the word 'hello' is: {hello_def}")
+
+hello_examples = wordnet.synset('hello.n.01').examples()
+print(f"\nExamples for the Synonym Set 'hello.n.01' from the word 'hello' is: {hello_examples}")
+TRY IT
+
+The Definition for the Synonym Set 'hello.n.01' from the word 'hello' is: an expression of greeting
+
+Examples for the Synonym Set 'hello.n.01' from the word 'hello' is: ['every morning they exchanged polite hellos']
+Your output should display as shown below:
+The Definition for the Synonym Set 'hello.n.01' from the word 'hello' is: an expression of greeting
+Examples for the Synonym Set ‘hello.n.01’ from the word ‘hello’ is: [‘every morning they exchanged polite hellos’]
+Try this variation:
+Hyponyms are also included in the wordnet lexicon corpus. Hyponyms represent types of a specified item.
+For example, the word dog is a hyponym of the word animal.
+Enter the below code, then select the TRY IT button to run the file.
+vehicle = wordnet.synset('vehicle.n.01')
+types_of_vehicles = vehicle.hyponyms()
+print(f'\nHyponyms / Types of Vehicles: {types_of_vehicles}')
+
+wheeled_vehicle_n_01_hyponyms = wordnet.synset('wheeled_vehicle.n.01').hyponyms()
+print(f"\nHyponyms of Hyponym 'wheeled_vehicle_n_01': {wheeled_vehicle_n_01_hyponyms}")
+TRY IT
+
+Hyponyms / Types of Vehicles: [Synset('bumper_car.n.01'), Synset('craft.n.02'), Synset('military_vehicle.n.01'), Synset('rocket.n.01'), Synset('skibob.n.01'), Synset('sled.n.01'), Synset('steamroller.n.02'), Synset('wheeled_vehicle.n.01')]
+
+Hyponyms of Hyponym 'wheeled_vehicle_n_01': [Synset('baby_buggy.n.01'), Synset('bicycle.n.01'), Synset('boneshaker.n.01'), Synset('car.n.02'), Synset('handcart.n.01'), Synset('horse-drawn_vehicle.n.01'), Synset('motor_scooter.n.01'), Synset('rolling_stock.n.01'), Synset('scooter.n.02'), Synset('self-propelled_vehicle.n.01'), Synset('skateboard.n.01'), Synset('trailer.n.04'), Synset('tricycle.n.01'), Synset('unicycle.n.01'), Synset('wagon.n.01'), Synset('wagon.n.04'), Synset('welcome_wagon.n.01')]
+Your output should display as shown below.
+Hyponyms / Types of Vehicles:  [Synset('bumper_car.n.01'), Synset('craft.n.02'), Synset('military_vehicle.n.01'), Synset('rocket.n.01'), Synset('skibob.n.01'), Synset('sled.n.01'), Synset('steamroller.n.02'), Synset('wheeled_vehicle.n.01')]
+Hyponyms of Hyponym 'wheeled_vehicle_n_01’: [Synset(‘baby_buggy.n.01’), Syn
+
+
+
+
+
+USAGESSSS / TEST 
+We can use .synsets() to retrieve the synonym sets of a specified string.
+
+This function allows us to find the synonym set(s) of a specified word represented as a string.
+We can use .lemma_name() to retrieve the lemma names of each lemma in a specified synonym set.
+
+This function allows us to retrieve an array of lemma names.
+We can use .lemmas() to retrieve the lemmas in a specified word or synonym set.
+
+We can use .synset() to retrieve the synonym set of a specified lemma.
+
+We can use .lemma() to retrieve the lemma of a specified synonym set.
+
+We can use .name() to retrieve the synonym set name of a specified lemma.
+
+We can use .definition() to retrieve the definition of a specified synonym set.
+
+We can use .examples() to retrieve example usages of a specified synonym set.
+
+We can use .hyponyms() to retrieve types of the specified word.

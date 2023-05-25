@@ -1,0 +1,48 @@
+installer nltk python3 -m pip install nltk==3.6.7
+ACCESS CORPORA /
+from nltk.corpus import brown
+from nltk.corpus import gutenberg
+from nltk.corpus import webtext
+from nltk.corpus import nps_chat
+from nltk.corpus import reuters
+from nltk.corpus import inaugural
+**********************
+print(f'\nUsing words() on the Brown Corpus: {brown.words()}')
+***************
+.sents(): Returns the contents of a specified corpus in a list 
+of sub lists of strings, where each sub list is grouped by sentence 
+and each string element in each sub list represents a word in the given sentence.
+print(f'\nUsing sents(): {brown.sents()}')
+***********************
+paras(): Returns the contents of a specified corpus in a list of sub 
+lists of sub lists of strings, where each sub list is grouped by paragraph,
+ each sub list within that sub list is grouped by sentence, and each string 
+element in each sub list of sub lists represents a word in the given 
+sentence in the given paragraph.
+print(f'\nUsing paras(): {brown.paras()}')
+******************************
+.tagged_words(): Returns the contents of a specified corpus in a list of sub
+ tuples of strings, where each sub tuple contains two string elements - the first 
+string element being the word from the text and the second element being the given 
+word’s type of speech tag.
+print(f'\nUsing tagged_words(): {brown.tagged_words()}')
+*************************************
+tagged.sents(): Returns the contents of a specified corpus in
+ a list of sub lists of sub tuples of strings, where each sub list 
+is grouped by sentence, and each sub tuple contains two string elements 
+- the first string element being the word from the text and the second
+ element being the given word’s type of speech tag.
+print(f'\nUsing tagged_sents(): {brown.tagged_sents()}')
+*****************************************
+tagged_paras(): Returns the contents of a specified corpus in
+ a list of sub lists of sub lists of sub tuples of strings, where e
+ach sub list is grouped by paragraph, each sub list within a given sub 
+list is grouped by sentence, and each sub tuple contains two string
+ elements - the first string element being the word from the text and 
+the second element being the given word’s type of speech tag.
+print(f'\nUsing tagged_paras(): {brown.tagged_paras()}')
+*********************************************************
+Solution
+One possible solution is shown below, where we can return the Inaugural 
+Corpus broken up by word, using the reader function words.
+print(f'\nThe Inaugural Corpus broken up by word: {inaugural.words()}')
